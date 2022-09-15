@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Table(name = "staff_tbl")
+public class StaffEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,11 +27,11 @@ public class Staff {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "staff")
-    private List<Order> orders = new ArrayList<>();
+    private List<OrderEntity> orders = new ArrayList<>();
 
-    public Staff() {}
+    public StaffEntity() {}
 
-    public Staff(Long id, String fullName, String address, String gender, String birthDay, String phoneNumber, List<Order> orders) {
+    public StaffEntity(Long id, String fullName, String address, String gender, String birthDay, String phoneNumber, List<OrderEntity> orders) {
         this.id = id;
         this.fullName = fullName;
         this.address = address;
@@ -85,11 +85,11 @@ public class Staff {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Order> getOrders() {
+    public List<OrderEntity> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<OrderEntity> orders) {
         this.orders = orders;
     }
 }

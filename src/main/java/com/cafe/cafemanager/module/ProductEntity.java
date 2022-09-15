@@ -3,8 +3,8 @@ package com.cafe.cafemanager.module;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "product_tbl")
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,15 +20,15 @@ public class Product {
 
     @ManyToOne()
     @JoinColumn(name = "category_id")
-    private Category category;
+    private CategoryEntity category;
 
     @ManyToOne()
     @JoinColumn(name = "order_detail_id")
     private OrderDetail orderDetail;
 
-    public Product() {}
+    public ProductEntity() {}
 
-    public Product(Long id, String title, double price, String description, Category category, OrderDetail orderDetail) {
+    public ProductEntity(Long id, String title, double price, String description, CategoryEntity category, OrderDetail orderDetail) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -65,11 +65,11 @@ public class Product {
         this.description = description;
     }
 
-    public Category getCategory() {
+    public CategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryEntity category) {
         this.category = category;
     }
 

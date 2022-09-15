@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "category_tbl")
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,12 +15,12 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<Product> products = new ArrayList<>();
+    private List<ProductEntity> products = new ArrayList<>();
 
-    public Category() {
+    public CategoryEntity() {
     }
 
-    public Category(Long id, String name, List<Product> products) {
+    public CategoryEntity(Long id, String name, List<ProductEntity> products) {
         this.id = id;
         this.name = name;
         this.products = products;
@@ -38,11 +38,11 @@ public class Category {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductEntity> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductEntity> products) {
         this.products = products;
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "order_detail")
+@Table(name = "order_detail_tbl")
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,17 +13,17 @@ public class OrderDetail {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private OrderEntity order;
 
     @OneToMany(mappedBy = "orderDetail")
-    private List<Product> products = new ArrayList<>();
+    private List<ProductEntity> products = new ArrayList<>();
 
     private int num; // số lượng đặt
     private double price;
 
     public OrderDetail() {}
 
-    public OrderDetail(Long id, Order order, List<Product> products, int num, double price) {
+    public OrderDetail(Long id, OrderEntity order, List<ProductEntity> products, int num, double price) {
         this.id = id;
         this.order = order;
         this.products = products;
@@ -35,19 +35,19 @@ public class OrderDetail {
         return id;
     }
 
-    public Order getOrder() {
+    public OrderEntity getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderEntity order) {
         this.order = order;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductEntity> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductEntity> products) {
         this.products = products;
     }
 

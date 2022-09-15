@@ -3,18 +3,18 @@ package com.cafe.cafemanager.module;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "order_tbl")
+public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne()
     @JoinColumn(name = "staff_id")
-    private Staff staff;
+    private StaffEntity staff;
 
     @ManyToOne()
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private CustomerEntity customer;
 
     @OneToOne(mappedBy = "order")
     private OrderDetail orderDetail;
@@ -23,9 +23,9 @@ public class Order {
     private double totalPrice;
 
 
-    public Order() {}
+    public OrderEntity() {}
 
-    public Order(Long id, double totalPrice, Staff staff, Customer customer, OrderDetail orderDetail) {
+    public OrderEntity(Long id, double totalPrice, StaffEntity staff, CustomerEntity customer, OrderDetail orderDetail) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.staff = staff;
@@ -45,19 +45,19 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public Staff getStaff() {
+    public StaffEntity getStaff() {
         return staff;
     }
 
-    public void setStaff(Staff staff) {
+    public void setStaff(StaffEntity staff) {
         this.staff = staff;
     }
 
-    public Customer getCustomer() {
+    public CustomerEntity getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
     }
 
