@@ -3,6 +3,7 @@ package com.cafe.cafemanager.service.impl;
 import com.cafe.cafemanager.module.CategoryEntity;
 import com.cafe.cafemanager.repository.CategoryRepository;
 import com.cafe.cafemanager.service.ICategory;
+import com.cafe.cafemanager.service.converter.CategoryConverter;
 import com.cafe.cafemanager.service.dto.CategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class CategoryImpl implements ICategory {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private CategoryConverter categoryConverter;
 
     @Override
     public CategoryDTO save(CategoryDTO newCategoryDTO) {
@@ -29,8 +33,7 @@ public class CategoryImpl implements ICategory {
 
         categoryRepository.save(categoryEntity);
 
-        CategoryDTO categoryDTO = new CategoryDTO(categoryEntity.getId(), categoryEntity.getName());
-        return categoryDTO;
+        return categoryConverter.toDTO(categoryEntity);
     }
 
     @Override
